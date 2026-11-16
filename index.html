@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fee072">
+  <meta name="description" content="Guess a Wow! Wow! Wubbzy! song from a random clip. One daily puzzle for everyone, plus unlimited plays.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:site_name" content="Wubbzy Heardle">
+  <meta property="og:title" content="Wubbzy Heardle">
+  <meta property="og:description" content="Guess a Wow! Wow! Wubbzy! song from a random clip. One daily puzzle for everyone, plus unlimited plays.">
+  <meta property="og:image" content="assets/favicon-512.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="Blue spotted ball from Wow! Wow! Wubbzy!">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Wubbzy Heardle">
+  <meta name="twitter:description" content="Guess a Wow! Wow! Wubbzy! song from a random clip. One daily puzzle for everyone, plus unlimited plays.">
+  <meta name="twitter:image" content="assets/favicon-512.png">
+  <meta name="twitter:image:alt" content="Blue spotted ball from Wow! Wow! Wubbzy!">
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <title>Wubbzy Heardle</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="tracks.js"></script>
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <div class="app">
+    <header class="site-header">
+      <div class="header-inner">
+        <button id="infoButton" class="icon-button" type="button" aria-label="About Wubbzy Heardle" title="About">ⓘ</button>
+        <h1>Wubbzy Heardle</h1>
+        <div class="header-actions">
+          <button id="statsButton" class="icon-button" type="button" aria-label="Statistics" title="Statistics">Stats</button>
+          <button id="helpButton" class="icon-button" type="button" aria-label="How to play" title="How to play">?</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="game-shell">
+      <div class="game-main">
+        <div class="game-meta"><span id="modeLabel">TODAY'S SONG</span><span id="dateLabel"></span></div>
+        <section id="guessesPanel" class="guesses" aria-label="Six guesses"><div id="segments"></div></section>
+        <section id="resultPanel" class="result-panel" hidden aria-live="polite">
+          <p id="resultKicker"></p><h2 id="resultHeading"></h2>
+          <div class="result-card"><img id="resultArt" alt="Album artwork" width="96" height="96"><div class="result-card-copy"><strong id="resultSong"></strong><span id="resultAlbum"></span></div></div>
+          <section id="videoPanel" class="video-panel" aria-label="Song video" hidden><h3>Listen to the song</h3><div class="video-frame"><iframe id="resultVideo" title="Song video on YouTube" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><a id="resultVideoLink" target="_blank" rel="noopener noreferrer">Listen on YouTube ↗</a></section>
+          <p id="videoUnavailable" class="video-unavailable" hidden>No matching YouTube upload is available for this recording yet.</p>
+          <div class="result-actions"><button id="shareButton" class="solid-button" type="button">Share result</button><button id="practiceButton" class="outline-button" type="button">Play unlimited</button></div>
+        </section>
+        <div id="startHint" class="start-hint"><span>Turn up the volume and tap to start the track!</span><span aria-hidden="true">⌄</span></div>
+      </div>
+
+      <div class="controls">
+        <section class="player" aria-label="Audio clue">
+          <div class="timeline"><div id="timelineUnlocked" class="timeline-unlocked"><div id="progressFill" class="progress-fill"></div></div><div class="timeline-marks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+          <div class="player-row"><span id="elapsedLabel">0:00</span><button id="playButton" class="play-button" type="button" aria-label="Play audio clue"><span id="playIcon">▶</span></button><span id="timeLabel">0:01</span></div>
+          <p id="playerStatus" class="sr-only" role="status">Tap play to listen</p>
+          <audio id="audio" preload="none"></audio>
+        </section>
+        <section id="guessPanel" class="guess-panel" aria-label="Your guess">
+          <div class="input-wrap"><span class="search-icon" aria-hidden="true">⌕</span><input id="guessInput" type="search" placeholder="Know it? Search for the title" autocomplete="off" aria-label="Search for a song" aria-autocomplete="list" aria-controls="suggestions" aria-expanded="false"></div>
+          <ul id="suggestions" class="suggestions" role="listbox" hidden></ul>
+          <div class="action-row"><button id="skipButton" class="outline-button" type="button">Skip (+1s)</button><button id="submitButton" class="solid-button" type="button" disabled>Submit</button></div>
+          <p id="feedback" class="feedback" role="status" aria-live="polite"></p>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <dialog id="helpDialog"><div class="dialog-content"><button id="closeHelp" class="dialog-close" type="button" aria-label="Close">×</button><h2>How to play</h2><p>Guess the Wubbzy song from a random segment in as few tries as possible.</p><ul><li>Tap play to hear the clue.</li><li>Search for a title, then submit your guess.</li><li>A wrong guess or skip unlocks more of the same segment: 1, 2, 4, 7, 11, then 16 seconds.</li><li>You have six guesses. Everyone gets the same daily song and segment. The next puzzle begins at 00:00 UTC.</li></ul><p>Practice songs are unlimited and do not affect your daily result.</p><button id="gotIt" class="solid-button" type="button">Play</button></div></dialog>
+  <dialog id="infoDialog"><div class="dialog-content"><button id="closeInfo" class="dialog-close" type="button" aria-label="Close">×</button><h2>About</h2><p><em>Wubbzy Heardle</em> is a fan-made song guessing game for <em>Wow! Wow! Wubbzy!</em></p><p><span id="trackCount"></span> songs are in the game, including character themes, a remix, and both vocal versions of "Sing a Song". Album artwork appears after you finish a puzzle.</p><button id="closeInfoBottom" class="solid-button" type="button">Close</button></div></dialog>
+  <dialog id="statsDialog"><div class="dialog-content"><button id="closeStats" class="dialog-close" type="button" aria-label="Close">×</button><h2>Statistics</h2><div class="stats-grid"><div><strong id="playedStat">0</strong><span>Played</span></div><div><strong id="winsStat">0</strong><span>Won</span></div><div><strong id="rateStat">0%</strong><span>Win rate</span></div></div><p>Daily results are saved in this browser.</p><button id="closeStatsBottom" class="solid-button" type="button">Close</button></div></dialog>
+</body>
+</html>
