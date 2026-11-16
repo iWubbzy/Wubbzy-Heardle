@@ -18,6 +18,10 @@
     const d = new Date();
     return `${d.getUTCFullYear()}-${String(d.getUTCMonth()+1).padStart(2,'0')}-${String(d.getUTCDate()).padStart(2,'0')}`;
   };
+  const shareDate = date => {
+    const [year, month, day] = date.split('-');
+    return `${day}/${month}/${year.slice(-2)}`;
+  };
   const hash = value => { let h = 2166136261; for (const ch of value) { h ^= ch.charCodeAt(0); h = Math.imul(h, 16777619); } return h >>> 0; };
   const random = seed => () => { seed = (seed + 0x6D2B79F5) | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t ^= t + Math.imul(t ^ t >>> 7, 61 | t); return ((t ^ t >>> 14) >>> 0) / 4294967296; };
   function dailyTrack(date) {
@@ -178,7 +182,7 @@
   $('dailyButton').addEventListener('click',loadDaily);
   $('shareButton').addEventListener('click',async()=>{
     const boxes=state.guesses.map(id=>id===current.id?'🟩':'🟥').join('')+'⬜'.repeat(6-state.guesses.length);
-    const result=`Wubbzy Heardle ${practice?'Practise':activeDailyDate} ${state.won?state.guesses.length+'/6':'X/6'}\n${boxes}\nhttps://heardle.iwubbzy.com/`;
+    const result=`Wubbzy Heardle ${practice?'Practise':shareDate(activeDailyDate)} ${state.won?state.guesses.length+'/6':'X/6'}\n${boxes}\nhttps://heardle.iwubbzy.com/`;
     try {await navigator.clipboard.writeText(result); $('shareButton').textContent='Copied!';}
     catch { $('shareButton').textContent='Copy unavailable'; }
   });
