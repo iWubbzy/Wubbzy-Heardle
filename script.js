@@ -151,7 +151,7 @@
   $('practiceButton').addEventListener('click',nextPractice);
   $('shareButton').addEventListener('click',async()=>{
     const boxes=state.guesses.map(id=>id===current.id?'🟩':'🟥').join('')+'⬜'.repeat(6-state.guesses.length);
-    const result=`Wubbzy Heardle ${practice?'Practice':activeDailyDate} ${state.won?state.guesses.length+'/6':'X/6'}\n${boxes}`;
+    const result=`Wubbzy Heardle ${practice?'Practice':activeDailyDate} ${state.won?state.guesses.length+'/6':'X/6'}\n${boxes}\nhttps://heardle.iwubbzy.com/`;
     try {await navigator.clipboard.writeText(result); $('shareButton').textContent='Copied!';}
     catch { $('shareButton').textContent='Copy unavailable'; }
   });
