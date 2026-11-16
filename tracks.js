@@ -497,13 +497,13 @@ window.TRACKS = [
   },
   {
     "id": 32,
-    "title": "Are You Ready",
+    "title": "Are You Ready?",
     "category": "Wubbzysongs Complete!",
     "file": "audio/32.mp3",
     "art": "art/wubbzysongs.png",
     "album": "Wubbzysongs Complete!",
     "artist": "Brad Mossman",
-    "display": "Brad Mossman - Are You Ready",
+    "display": "Brad Mossman - Are You Ready?",
     "clips": [
       "audio/32.mp3",
       "audio/32-2.mp3",
@@ -917,7 +917,7 @@ window.TRACKS = [
     "category": "Character theme",
     "file": "audio/58.mp3",
     "art": "art/daizy.png",
-    "album": "Daizy's Kickity-Kick Ball",
+    "album": "Daizy's Kickity-Kick Ball (Original Soundtrack)",
     "artist": "Mike Reagan",
     "display": "Mike Reagan - Daizy's Theme",
     "clips": [
@@ -933,7 +933,7 @@ window.TRACKS = [
     "category": "Character theme",
     "file": "audio/59.mp3",
     "art": "art/widget.png",
-    "album": "Widget's Build a Robot",
+    "album": "Widget's Build a Robot (Original Soundtrack)",
     "artist": "Mike Reagan",
     "display": "Mike Reagan - Widget's Theme",
     "clips": [
@@ -949,7 +949,7 @@ window.TRACKS = [
     "category": "Character theme",
     "file": "audio/60.mp3",
     "art": "art/beauty-salon.png",
-    "album": "Wubbzy's Beauty Salon",
+    "album": "Wubbzy's Beauty Salon (Original Soundtrack)",
     "artist": "Mike Reagan",
     "display": "Mike Reagan - Madame Zabinga's Theme",
     "clips": [
@@ -965,7 +965,7 @@ window.TRACKS = [
     "category": "Game loop",
     "file": "audio/61.mp3",
     "art": "art/beauty-salon.png",
-    "album": "Wubbzy's Beauty Salon",
+    "album": "Wubbzy's Beauty Salon (Original Soundtrack)",
     "artist": "Brad Mossman",
     "display": "Brad Mossman - Ziggity Zig-Zag",
     "clips": [
@@ -1361,13 +1361,13 @@ window.TRACKS = [
   },
   {
     "id": 86,
-    "title": "Are You Ready (Album Version)",
+    "title": "Are You Ready? (Album Version)",
     "category": "Album version",
     "file": "audio/86.mp3",
     "art": "art/sing-a-song.jpg",
     "album": "Wow! Wow! Wubbzy!: Sing-A-Song",
     "artist": "Brad Mossman",
-    "display": "Brad Mossman - Are You Ready (Album Version)",
+    "display": "Brad Mossman - Are You Ready? (Album Version)",
     "clips": [
       "audio/86.mp3",
       "audio/86-2.mp3",

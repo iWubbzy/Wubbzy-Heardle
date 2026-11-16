@@ -12,6 +12,7 @@
   let practice = false;
   let practiceIds = [];
   let hasPlayed = false;
+  const practiceKey = 'wubbzy-active-practise';
 
   const dailyDate = () => {
     const d = new Date();
@@ -32,6 +33,7 @@
   let activeDailyDate = dailyDate();
   function loadDaily() {
     practice = false;
+    localStorage.removeItem(practiceKey);
     activeDailyDate = dailyDate();
     current = dailyTrack(activeDailyDate);
     try { state = JSON.parse(localStorage.getItem(key())); }
@@ -41,7 +43,25 @@
     }
     render();
   }
-  function save() { if (!practice) { state.trackId = current.id; localStorage.setItem(key(), JSON.stringify(state)); } }
+  function restorePractice() {
+    let saved;
+    try { saved = JSON.parse(localStorage.getItem(practiceKey)); }
+    catch { return false; }
+    const track = tracks.find(t => t.id === saved?.trackId);
+    if (!track || !Number.isInteger(saved.segment) || saved.segment < 0 || saved.segment >= track.clips.length ||
+        !Array.isArray(saved.guesses) || saved.guesses.length > 6 ||
+        !saved.guesses.every(id => id === null || tracks.some(t => t.id === id)) ||
+        typeof saved.won !== 'boolean' || typeof saved.finished !== 'boolean') return false;
+    practice = true;
+    current = track;
+    state = saved;
+    render();
+    return true;
+  }
+  function save() {
+    state.trackId = current.id;
+    localStorage.setItem(practice ? practiceKey : key(), JSON.stringify(state));
+  }
   function nextPractice() {
     practice = true;
     if (!practiceIds.length) practiceIds = tracks.map(t => t.id).sort(() => Math.random() - .5);
@@ -49,6 +69,7 @@
     if (id === current.id && tracks.length > 1) { practiceIds.unshift(id); id = practiceIds.pop(); }
     current = tracks.find(t => t.id === id);
     state = { trackId: current.id, segment: Math.floor(Math.random() * current.clips.length), guesses: [], won: false, finished: false };
+    save();
     render();
   }
   function render() {
@@ -58,8 +79,10 @@
     input.value = ''; selected = null; suggestions.hidden = true; input.setAttribute('aria-expanded','false');
     $('submitButton').disabled = true;
     $('feedback').textContent = '';
-    $('modeLabel').textContent = practice ? 'PRACTICE SONG' : "TODAY'S SONG";
-    $('dateLabel').textContent = practice ? 'Unlimited plays' : new Date(`${activeDailyDate}T12:00:00Z`).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'});
+    $('modeLabel').textContent = practice ? 'PRACTISE SONG' : "TODAY'S SONG";
+    $('dateLabel').hidden = practice;
+    $('dailyButton').hidden = !practice;
+    $('dateLabel').textContent = new Date(`${activeDailyDate}T12:00:00Z`).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'});
     $('trackCount').textContent = tracks.length;
     $('segments').replaceChildren();
     for(let i=0;i<6;i++) {
@@ -80,7 +103,10 @@
     $('guessPanel').hidden = state.finished;
     $('guessesPanel').hidden = state.finished;
     $('resultPanel').hidden = !state.finished;
-    $('resultVideo').removeAttribute('src');
+    const previousVideo = $('resultVideo');
+    previousVideo.removeAttribute('src');
+    const resultVideo = previousVideo.cloneNode(false);
+    previousVideo.replaceWith(resultVideo);
     $('resultVideoLink').removeAttribute('href');
     $('videoPanel').hidden = true;
     $('videoUnavailable').hidden = true;
@@ -93,8 +119,8 @@
       $('resultArt').alt = `Artwork for ${current.album}`;
       $('practiceButton').textContent = 'Play unlimited';
       if(current.youtubeId) {
-        $('resultVideo').src = `https://www.youtube-nocookie.com/embed/${current.youtubeId}?rel=0`;
-        $('resultVideo').title = `${current.display} on YouTube`;
+        resultVideo.src = `https://www.youtube-nocookie.com/embed/${current.youtubeId}?rel=0`;
+        resultVideo.title = `${current.display} on YouTube`;
         $('resultVideoLink').href = `https://www.youtube.com/watch?v=${current.youtubeId}`;
         $('videoPanel').hidden = false;
       } else {
@@ -149,9 +175,10 @@
   $('submitButton').addEventListener('click',()=>{if(selected) advance(selected.id);});
   $('skipButton').addEventListener('click',()=>advance(null));
   $('practiceButton').addEventListener('click',nextPractice);
+  $('dailyButton').addEventListener('click',loadDaily);
   $('shareButton').addEventListener('click',async()=>{
     const boxes=state.guesses.map(id=>id===current.id?'🟩':'🟥').join('')+'⬜'.repeat(6-state.guesses.length);
-    const result=`Wubbzy Heardle ${practice?'Practice':activeDailyDate} ${state.won?state.guesses.length+'/6':'X/6'}\n${boxes}\nhttps://heardle.iwubbzy.com/`;
+    const result=`Wubbzy Heardle ${practice?'Practise':activeDailyDate} ${state.won?state.guesses.length+'/6':'X/6'}\n${boxes}\nhttps://heardle.iwubbzy.com/`;
     try {await navigator.clipboard.writeText(result); $('shareButton').textContent='Copied!';}
     catch { $('shareButton').textContent='Copy unavailable'; }
   });
@@ -170,6 +197,6 @@
   });
   $('closeStats').addEventListener('click',()=>$('statsDialog').close());
   $('closeStatsBottom').addEventListener('click',()=>$('statsDialog').close());
-  if(tracks.length) loadDaily();
+  if(tracks.length && !restorePractice()) loadDaily();
   setInterval(()=>{if(!practice && dailyDate()!==activeDailyDate) loadDaily();},60000);
 })();

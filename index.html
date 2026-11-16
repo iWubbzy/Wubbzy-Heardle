@@ -8,18 +8,19 @@
   <meta property="og:type" content="website">
   <meta property="og:locale" content="en_GB">
   <meta property="og:site_name" content="Wubbzy Heardle">
+  <meta property="og:url" content="https://heardle.iwubbzy.com/">
   <meta property="og:title" content="Wubbzy Heardle">
   <meta property="og:description" content="Guess a Wow! Wow! Wubbzy! song from a random clip. One daily puzzle for everyone, plus unlimited plays.">
-  <meta property="og:image" content="assets/favicon-512.png">
+  <meta property="og:image" content="https://heardle.iwubbzy.com/assets/social-preview.png">
   <meta property="og:image:type" content="image/png">
-  <meta property="og:image:alt" content="Blue spotted ball from Wow! Wow! Wubbzy!">
-  <meta property="og:image:width" content="512">
-  <meta property="og:image:height" content="512">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image:alt" content="Wubbzy Heardle preview with Wubbzy carrying a teapot">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Wubbzy Heardle">
   <meta name="twitter:description" content="Guess a Wow! Wow! Wubbzy! song from a random clip. One daily puzzle for everyone, plus unlimited plays.">
-  <meta name="twitter:image" content="assets/favicon-512.png">
-  <meta name="twitter:image:alt" content="Blue spotted ball from Wow! Wow! Wubbzy!">
+  <meta name="twitter:image" content="https://heardle.iwubbzy.com/assets/social-preview.png">
+  <meta name="twitter:image:alt" content="Wubbzy Heardle preview with Wubbzy carrying a teapot">
   <link rel="icon" href="assets/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
@@ -45,7 +46,7 @@
 
     <main class="game-shell">
       <div class="game-main">
-        <div class="game-meta"><span id="modeLabel">TODAY'S SONG</span><span id="dateLabel"></span></div>
+        <div class="game-meta"><span id="modeLabel">TODAY'S SONG</span><span id="dateLabel"></span><button id="dailyButton" class="daily-button" type="button" hidden>Today's song</button></div>
         <section id="guessesPanel" class="guesses" aria-label="Six guesses"><div id="segments"></div></section>
         <section id="resultPanel" class="result-panel" hidden aria-live="polite">
           <p id="resultKicker"></p><h2 id="resultHeading"></h2>
@@ -74,7 +75,7 @@
     </main>
   </div>
 
-  <dialog id="helpDialog"><div class="dialog-content"><button id="closeHelp" class="dialog-close" type="button" aria-label="Close">×</button><h2>How to play</h2><p>Guess the Wubbzy song from a random segment in as few tries as possible.</p><ul><li>Tap play to hear the clue.</li><li>Search for a title, then submit your guess.</li><li>A wrong guess or skip unlocks more of the same segment: 1, 2, 4, 7, 11, then 16 seconds.</li><li>You have six guesses. Everyone gets the same daily song and segment. The next puzzle begins at 00:00 UTC.</li></ul><p>Practice songs are unlimited and do not affect your daily result.</p><button id="gotIt" class="solid-button" type="button">Play</button></div></dialog>
+  <dialog id="helpDialog"><div class="dialog-content"><button id="closeHelp" class="dialog-close" type="button" aria-label="Close">×</button><h2>How to play</h2><p>Guess the Wubbzy song from a random segment in as few tries as possible.</p><ul><li>Tap play to hear the clue.</li><li>Search for a title, then submit your guess.</li><li>A wrong guess or skip unlocks more of the same segment: 1, 2, 4, 7, 11, then 16 seconds.</li><li>You have six guesses. Everyone gets the same daily song and segment. The next puzzle begins at 00:00 UTC.</li></ul><p>Practise with unlimited songs without affecting your daily result.</p><button id="gotIt" class="solid-button" type="button">Play</button></div></dialog>
   <dialog id="infoDialog"><div class="dialog-content"><button id="closeInfo" class="dialog-close" type="button" aria-label="Close">×</button><h2>About</h2><p><em>Wubbzy Heardle</em> is a fan-made song guessing game for <em>Wow! Wow! Wubbzy!</em></p><p><span id="trackCount"></span> songs are in the game, including character themes, a remix, and both vocal versions of "Sing a Song". Album artwork appears after you finish a puzzle.</p><button id="closeInfoBottom" class="solid-button" type="button">Close</button></div></dialog>
   <dialog id="statsDialog"><div class="dialog-content"><button id="closeStats" class="dialog-close" type="button" aria-label="Close">×</button><h2>Statistics</h2><div class="stats-grid"><div><strong id="playedStat">0</strong><span>Played</span></div><div><strong id="winsStat">0</strong><span>Won</span></div><div><strong id="rateStat">0%</strong><span>Win rate</span></div></div><p>Daily results are saved in this browser.</p><button id="closeStatsBottom" class="solid-button" type="button">Close</button></div></dialog>
 </body>
