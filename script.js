@@ -68,7 +68,13 @@
   }
   function nextPractice() {
     practice = true;
-    if (!practiceIds.length) practiceIds = tracks.map(t => t.id).sort(() => Math.random() - .5);
+    if (!practiceIds.length) {
+      practiceIds = tracks.map(t => t.id);
+      for (let i = practiceIds.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [practiceIds[i], practiceIds[j]] = [practiceIds[j], practiceIds[i]];
+      }
+    }
     let id = practiceIds.pop();
     if (id === current.id && tracks.length > 1) { practiceIds.unshift(id); id = practiceIds.pop(); }
     current = tracks.find(t => t.id === id);

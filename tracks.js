@@ -1041,13 +1041,13 @@ window.TRACKS = [
   },
   {
     "id": 66,
-    "title": "Opening Theme (From \"Wow! Wow! Wubbzy!\") (2005 Promotional Version)",
+    "title": "Opening Theme (From \"Wow! Wow! Wubbzy!\") [2005 Promotional Version]",
     "category": "Special version",
     "file": "audio/66.mp3",
     "art": "art/opening-promo.png",
     "album": "Opening Theme (From Wow! Wow! Wubbzy!) [2005 Promotional Version]",
     "artist": "Brad Mossman",
-    "display": "Brad Mossman - Opening Theme (From \"Wow! Wow! Wubbzy!\") (2005 Promotional Version)",
+    "display": "Brad Mossman - Opening Theme (From \"Wow! Wow! Wubbzy!\") [2005 Promotional Version]",
     "clips": [
       "audio/66.mp3",
       "audio/66-2.mp3",
@@ -1057,13 +1057,13 @@ window.TRACKS = [
   },
   {
     "id": 67,
-    "title": "Opening Theme (From \"Wow! Wow! Wubbzy!\") (Pilot Version)",
+    "title": "Opening Theme (From \"Wow! Wow! Wubbzy!\") [Pilot Version]",
     "category": "Special version",
     "file": "audio/67.mp3",
     "art": "art/opening-pilot.png",
     "album": "Opening Theme (From Wow! Wow! Wubbzy!) [Pilot Version]",
     "artist": "Brad Mossman",
-    "display": "Brad Mossman - Opening Theme (From \"Wow! Wow! Wubbzy!\") (Pilot Version)",
+    "display": "Brad Mossman - Opening Theme (From \"Wow! Wow! Wubbzy!\") [Pilot Version]",
     "clips": [
       "audio/67.mp3",
       "audio/67-2.mp3",
@@ -1117,17 +1117,17 @@ window.TRACKS = [
       "audio/70-2.mp3",
       "audio/70-3.mp3"
     ],
-    "youtubeId": null
+    "youtubeId": "NmJMec-csoE"
   },
   {
     "id": 71,
-    "title": "Opening Theme (From \"Wow! Wow! Wubbzy!\") (Album Version)",
+    "title": "Opening Theme (From \"Wow! Wow! Wubbzy!\") [Album Version]",
     "category": "Album version",
     "file": "audio/71.mp3",
     "art": "art/sing-a-song.jpg",
     "album": "Wow! Wow! Wubbzy!: Sing-A-Song",
     "artist": "Brad Mossman",
-    "display": "Brad Mossman - Opening Theme (From \"Wow! Wow! Wubbzy!\") (Album Version)",
+    "display": "Brad Mossman - Opening Theme (From \"Wow! Wow! Wubbzy!\") [Album Version]",
     "clips": [
       "audio/71.mp3",
       "audio/71-2.mp3",
@@ -1201,13 +1201,13 @@ window.TRACKS = [
   },
   {
     "id": 76,
-    "title": "We're All Together (But We're Not the Same) (Album Version)",
+    "title": "We're All Together (But We're Not the Same) [Album Version]",
     "category": "Album version",
     "file": "audio/76.mp3",
     "art": "art/sing-a-song.jpg",
     "album": "Wow! Wow! Wubbzy!: Sing-A-Song",
     "artist": "Brad Mossman",
-    "display": "Brad Mossman - We're All Together (But We're Not the Same) (Album Version)",
+    "display": "Brad Mossman - We're All Together (But We're Not the Same) [Album Version]",
     "clips": [
       "audio/76.mp3",
       "audio/76-2.mp3",
@@ -1249,13 +1249,13 @@ window.TRACKS = [
   },
   {
     "id": 79,
-    "title": "Made by You (Make It Yourself) (Album Version)",
+    "title": "Made by You (Make It Yourself) [Album Version]",
     "category": "Album version",
     "file": "audio/79.mp3",
     "art": "art/sing-a-song.jpg",
     "album": "Wow! Wow! Wubbzy!: Sing-A-Song",
     "artist": "Brad Mossman",
-    "display": "Brad Mossman - Made by You (Make It Yourself) (Album Version)",
+    "display": "Brad Mossman - Made by You (Make It Yourself) [Album Version]",
     "clips": [
       "audio/79.mp3",
       "audio/79-2.mp3",
